@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Накладная</title>
+</head>
+  <body>
+    <p align="right">{{date}}</p>
+    <p align="center">Накладная № {{invoice}}</p>
+    <div align="left">Кому: {{master}}</div>
+    <div align="left">От кого: ЭРА склад</div>
+    {% if order %}
+      <b>&nbsp&nbsp&nbsp&nbspЗаказ {{order}}</b>
+    {% else %}
+    <b>&nbsp&nbsp&nbsp&nbspЗаказ</b>
+    {% endif %}
+ <table width="100%" border="2" cellspacing="0">
+   <tr><th>№ п/п</th><th>Наименование</th><th>Тип</th><th>Размер</th><th>Материал</th><th>Кол-во</th></tr>
+   {% for item in items %}
+    <tr><td>{{loop.index}}</td>
+      <td>{{item[0]}}</td>
+      <td>{{item[1]}}</td>
+      <td>{{item[2]}}</td>
+      <td>{{item[3]}}</td>
+      <td>{% for i in item[4:6] if i != None %}
+            {{i}}
+          {% endfor %}
+      </td>
+    </tr>
+   {% endfor %}
+ </table>
+ <p></p>
+ <p></p>
+ <p></p>
+ <table width="100%">
+    <tr>
+      <td>Сдал: {{worker}}</td><td>Подпись:</td><td width="20%"></td><td width="30%">Принял:__________</td><td>Подпись:</td>
+    </tr>
+ </table>
+  </body>
+</html>
